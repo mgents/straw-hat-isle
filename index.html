@@ -92,13 +92,13 @@
     }, { passive: false });
 
     var config = {
-      dataUrl: "Build/WebGL.data.unityweb",
-      frameworkUrl: "Build/WebGL.framework.js.unityweb",
-      codeUrl: "Build/WebGL.wasm.unityweb",
+      dataUrl: "Build/WebGL.data.unityweb?v=20260907-1306",
+      frameworkUrl: "Build/WebGL.framework.js.unityweb?v=20260907-1306",
+      codeUrl: "Build/WebGL.wasm.unityweb?v=20260907-1306",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Leo",
       productName: "Straw Hat Isle",
-      productVersion: "1.0",
+      productVersion: "20260907-1306",
       matchWebGLToCanvasSize: true
     };
 
@@ -111,7 +111,7 @@
     }
 
     var script = document.createElement("script");
-    script.src = "Build/WebGL.loader.js";
+    script.src = "Build/WebGL.loader.js?v=20260907-1306";
     script.onerror = function () { showError("Could not load the game files. Try refreshing the page."); };
     script.onload = function () {
       createUnityInstance(canvas, config, function (progress) {
