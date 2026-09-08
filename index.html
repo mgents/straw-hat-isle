@@ -92,18 +92,21 @@
     }, { passive: false });
 
     var config = {
-      dataUrl: "Build/WebGL.data.unityweb?v=20260908-1151",
-      frameworkUrl: "Build/WebGL.framework.js.unityweb?v=20260908-1151",
-      codeUrl: "Build/WebGL.wasm.unityweb?v=20260908-1151",
+      dataUrl: "Build/WebGL.data.unityweb?v=20260908-1217",
+      frameworkUrl: "Build/WebGL.framework.js.unityweb?v=20260908-1217",
+      codeUrl: "Build/WebGL.wasm.unityweb?v=20260908-1217",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Leo",
       productName: "Straw Hat Isle",
-      productVersion: "20260908-1151",
+      productVersion: "20260908-1217",
       matchWebGLToCanvasSize: true
     };
 
-    // iPads have a lot of pixels and not a lot of patience; cap the ratio.
-    config.devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    // A retina iPad at devicePixelRatio 2 renders four times the pixels, which is the
+    // single biggest cost on a tablet GPU. Render at 1:1 on touch devices.
+    var isTouch = window.matchMedia("(pointer: coarse)").matches
+               || (navigator.maxTouchPoints || 0) > 1;
+    config.devicePixelRatio = isTouch ? 1 : Math.min(window.devicePixelRatio || 1, 2);
 
     function showError(msg) {
       err.style.display = "block";
@@ -111,7 +114,7 @@
     }
 
     var script = document.createElement("script");
-    script.src = "Build/WebGL.loader.js?v=20260908-1151";
+    script.src = "Build/WebGL.loader.js?v=20260908-1217";
     script.onerror = function () { showError("Could not load the game files. Try refreshing the page."); };
     script.onload = function () {
       createUnityInstance(canvas, config, function (progress) {
